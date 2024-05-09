@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="myForm">
+        <h1 id="first">User Login</h1>
+        <input type="text" id="name" placeholder="Username"><br><br>
+        <input type="password" id="pw" placeholder="Password"><br><br>
+        <button type="submit" id="last">Submit</button>
+    </form>
+    
+    <script>
+        let getForm = document.getElementById("myForm");
+        getForm.addEventListener("submit", (event) => {
+            event.preventDefault(); 
+    
+            let existingUsers = localStorage.getItem("userdetails");
+            let users = existingUsers ? JSON.parse(existingUsers) : [];
+            let input1 = document.getElementById("name").value;
+            let input2 = document.getElementById("pw").value;
+    
+            let userExists = users.some(user => user.name === input1 && user.pw === input2);
+            if (userExists) {
+                alert("User already exists!");
+                return;
+            }
+    
+            let userDetails = { name: input1, pw: input2 };
+            users.push(userDetails);
+            localStorage.setItem("userdetails", JSON.stringify(users));
+    
+            
+            document.getElementById("name").value = "";
+            document.getElementById("pw").value = "";
+        });
+        localStorage.clear()
+
+
+        let getform=document.getElementById("myForm")
+        getform.style.border="3px solid black"
+        getform.style.textAlign="center"
+        getform.style.padding="50px"
+        getform.style.height="200px"
+        getform.style.width="350px"
+        getform.style.backgroundColor="lightblue "
+        getform.style.boxShadow="0px 2px 3px 2px"
+        getform.style.borderRadius="50px"
+
+        let geth1=document.getElementById("first")
+        geth1.style.color="green"
+        geth1.style.textShadow="1px 1px"
+
+        let getsub=document.getElementById("last")
+        getsub.style.backgroundColor="black"
+        getsub.style.color="white"
+
+        let getuser=document.getElementById("name")
+        getuser.style.backgroundColor="pink"
+
+        let getpswd=document.getElementById("pw")
+        getpswd.style.backgroundColor="pink"
+</script>
+
+</body>
+</html>
